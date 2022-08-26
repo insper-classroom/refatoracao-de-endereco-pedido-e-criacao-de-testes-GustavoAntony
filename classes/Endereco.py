@@ -16,11 +16,12 @@ class Endereco:
     Esta classe possui overload de Contrutor, caso envie apenas três parametros será encaminhado
     para o contrutor que consulta o cep para encontrar o endereço.
     '''
+    lista = []
 
     def __init__(self, cep, numero ,rua='', estado='', cidade='', complemento=''):
 
         if (rua == '') or (estado == '') or (cidade == ''):
-            end_json = self.consultar_cep(cep)
+            end_json = Endereco.consultar_cep(cep)
 
             self.rua = end_json['logradouro']
             self.estado = end_json['uf']
@@ -38,14 +39,14 @@ class Endereco:
             self.complemento = complemento
             self.cep = str(cep)
 
-
-    def consultar_cep(self, cep):
+    @classmethod
+    def consultar_cep(cls , cep):
         '''
         Metodo realiza a consulta do cep em uma api publica para obter informações
         como estado, cidade e rua
         '''
         # continuam existindo variaveis locais, nem tudo é propriedade de objeto
-
+        cls.lista.append()
         # end point da API de consulta ao cep
         url_api = f'https://viacep.com.br/ws/{str(cep)}/json/'
 
