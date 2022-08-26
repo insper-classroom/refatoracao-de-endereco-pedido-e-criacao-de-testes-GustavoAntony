@@ -7,14 +7,10 @@ from classes.Endereco import Endereco
 @pytest.mark.teste_verificacao
 def test_criacao_endereco_sem_cep():
     num = 205
-    end = Endereco(num)
-    with pytest.raises(str('missing 1 required positional argument: numero')) as excinfo:
 
-        def f():
-            f()
-
-        f()
-    assert' missing 1 required positional argument: numero' in str(excinfo.value)
+    with pytest.raises(TypeError) as excinfo:
+        end = Endereco(num)
+    assert 'missing 1 required positional argument: numero' in str(excinfo.value)
 
 @pytest.mark.teste_com_internet
 @pytest.mark.teste_verificacao
