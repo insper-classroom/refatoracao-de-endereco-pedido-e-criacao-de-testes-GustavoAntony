@@ -17,5 +17,10 @@ import re
 class Pedido:
     EM_ABERTO = 1
     PAGO = 2
-    pass
+
+    def __init__(self, conta_pessoa, carrinho):
+        self.pessoa = conta_pessoa
+        self.carrinho = carrinho
+        self.endereco_entrega = ''
+        self.endereco_faturamento =''
     

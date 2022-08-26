@@ -5,7 +5,7 @@
 # Created Date: 15/08/2022
 # version ='1.0'
 # ---------------------------------------------------------------------------
-
+import http.client as httplib
 import requests
 import json
 
@@ -21,7 +21,7 @@ class Endereco:
     def __init__(self, cep, numero ,rua='', estado='', cidade='', complemento=''):
 
         if (rua == '') or (estado == '') or (cidade == ''):
-            end_json = Endereco.consultar_cep(cep)
+            end_json = Endereco.consultar_cep(cep,numero)
 
             self.rua = end_json['logradouro']
             self.estado = end_json['uf']
@@ -38,6 +38,17 @@ class Endereco:
             self.numero = int(numero)
             self.complemento = complemento
             self.cep = str(cep)
+    
+    def internet():
+        conn = httplib.HTTPSConnection("8.8.8.8", timeout=5)
+        try:
+            conn.request("HEAD", "/")
+            return True
+        except Exception:
+            return False
+        finally:
+            conn.close()
+
 
     @classmethod
     def consultar_cep(cls , cep):
@@ -45,8 +56,17 @@ class Endereco:
         Metodo realiza a consulta do cep em uma api publica para obter informações
         como estado, cidade e rua
         '''
+        if not cls.internet():
+            return False
+        
+        if isinstance(cep, int):
+            if cep > 99999999 or cep < 9999999:
+                return False
+
+        if isinstance(cep, str):
+            if len(cep) != 8:
+                return False
         # continuam existindo variaveis locais, nem tudo é propriedade de objeto
-        cls.lista.append()
         # end point da API de consulta ao cep
         url_api = f'https://viacep.com.br/ws/{str(cep)}/json/'
 
@@ -60,6 +80,9 @@ class Endereco:
 
         # converte a resposta json em dict
         json_resp = response.json()
+        if json_resp == {'erro': 'true'}:
+            return False
+        print(json_resp)
         return json_resp
 
 
