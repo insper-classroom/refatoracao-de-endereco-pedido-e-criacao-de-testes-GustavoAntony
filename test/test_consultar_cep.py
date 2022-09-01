@@ -1,21 +1,30 @@
 import pytest
 import numpy as np
 from classes.Endereco import Endereco
+import http.client as httplib
+from requests.exceptions import ConnectionError
+import requests
+import json
 
 
 @pytest.mark.teste_com_internet
 @pytest.mark.teste_verificacao
 def test_criacao_endereco_sem_cep():
-    num = 205
-
+    
     with pytest.raises(TypeError) as excinfo:
+        num = 205
         end = Endereco(num)
-    assert 'missing 1 required positional argument: numero' in str(excinfo.value)
+    assert 'missing 1 required positional argument' in str(excinfo.value)
 
 @pytest.mark.teste_com_internet
 @pytest.mark.teste_verificacao
 def test_criacao_endereco_sem_numero():
-    pass
+
+    with pytest.raises(TypeError) as excinfo:
+        cep = 12232239
+        end = Endereco(cep)
+    assert 'missing 1 required positional argument' in str(excinfo.value)
+
 
 
 
@@ -24,9 +33,9 @@ def test_criacao_endereco_sem_numero():
 @pytest.mark.teste_robustez
 @pytest.mark.teste_com_internet
 def test_cep_como_int():
-    cep = 12232239
+    cep = 4552040
     end = Endereco.consultar_cep(cep)
-    assert end['logradouro'] == 'Rua José Bonifácio de Oliveira'
+    assert end['logradouro'] == 'Rua Elvira Ferraz'
 
 @pytest.mark.teste_robustez
 @pytest.mark.teste_com_internet
@@ -52,6 +61,11 @@ def test_cep_nao_existe():
 @pytest.mark.teste_robustez
 @pytest.mark.teste_sem_internet
 def test_sem_internet():
-    cep = 12232239
-    end = Endereco.consultar_cep(cep)
-    assert False == end
+    # cep = 12232239
+    # end = Endereco.consultar_cep(cep)
+    # assert False == end
+    try:
+        r = requests.get("http://google.com", timeout=0.001)
+    except requests.exceptions.ConnectionError as e:  
+        print(e)
+        r = "No response"

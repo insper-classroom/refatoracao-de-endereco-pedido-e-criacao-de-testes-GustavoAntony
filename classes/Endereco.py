@@ -6,6 +6,7 @@
 # version ='1.0'
 # ---------------------------------------------------------------------------
 import http.client as httplib
+from requests.exceptions import ConnectionError
 import requests
 import json
 
@@ -39,15 +40,15 @@ class Endereco:
             self.complemento = complemento
             self.cep = str(cep)
     
-    def internet():
-        conn = httplib.HTTPSConnection("8.8.8.8", timeout=5)
-        try:
-            conn.request("HEAD", "/")
-            return True
-        except Exception:
-            return False
-        finally:
-            conn.close()
+    # def internet():
+    #     conn = httplib.HTTPSConnection("8.8.8.8", timeout=5)
+    #     try:
+    #         conn.request("HEAD", "/")
+    #         return True
+    #     except Exception:
+    #         return False
+    #     finally:
+    #         conn.close()
 
 
     @classmethod
@@ -56,11 +57,16 @@ class Endereco:
         Metodo realiza a consulta do cep em uma api publica para obter informações
         como estado, cidade e rua
         '''
-        if not cls.internet():
-            return False
+        # if not cls.internet():
+        #     return False
+
+        
         
         if isinstance(cep, int):
-            if cep > 99999999 or cep < 9999999:
+            cep = str(cep)
+            if len(cep) == 7:
+                cep = f'0{cep}'
+            elif len(cep) != 8:
                 return False
 
         if isinstance(cep, str):
