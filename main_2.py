@@ -7,7 +7,10 @@
 # ---------------------------------------------------------------------------
 from classes.PessoaFisica import PessoaFisica
 from classes.Endereco import Endereco
-
+from classes.Pagamentos import Pagamento
+from classes.Pedido import Pedido
+from classes.Produto import Produto
+from classes.Carrinho import Carrinho
 import copy
 
 # Caso de uso em que criamos uma pessoa do zero, em seguida um produto, e  depois fechamos um pedido

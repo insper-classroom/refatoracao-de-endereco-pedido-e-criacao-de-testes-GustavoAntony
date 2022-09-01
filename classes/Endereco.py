@@ -22,7 +22,7 @@ class Endereco:
     def __init__(self, cep, numero ,rua='', estado='', cidade='', complemento=''):
 
         if (rua == '') or (estado == '') or (cidade == ''):
-            end_json = Endereco.consultar_cep(cep,numero)
+            end_json = Endereco.consultar_cep(cep)
 
             self.rua = end_json['logradouro']
             self.estado = end_json['uf']
