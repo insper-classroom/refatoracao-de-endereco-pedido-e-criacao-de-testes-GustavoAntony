@@ -60,8 +60,7 @@ def test_sem_internet():
     # cep = 12232239
     # end = Endereco.consultar_cep(cep)
     # assert False == end
-    try:
-        r = requests.get("http://google.com", timeout=0.001)
-    except requests.exceptions.ConnectionError as e:  
-        print(e)
-        r = "No response"
+    with pytest.raises(ConnectionError) as excinfo:
+        num = 205
+        end = Endereco(12232239,num)
+    assert 'Failed to establish a new connection' in str(excinfo.value)
