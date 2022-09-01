@@ -26,10 +26,6 @@ def test_criacao_endereco_sem_numero():
     assert 'missing 1 required positional argument' in str(excinfo.value)
 
 
-
-
-
-
 @pytest.mark.teste_robustez
 @pytest.mark.teste_com_internet
 def test_cep_como_int():
