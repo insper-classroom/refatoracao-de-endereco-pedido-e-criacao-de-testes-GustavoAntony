@@ -21,11 +21,19 @@ class Carrinho:
 
     def adicionar_item(self, item:Produto, qtd):
         
-        id = item.get_id()
+        self.id = item.get_id()
+        self.quant = qtd
+        self.nome = item.get_name()
+        self.__itens[f'{self.id}'] = {self.nome:self.quant}
         
         # Implemente a adição do item no dicionário
-        
+    def get_itens(self):
+        return self.__itens
+
 
     def remover_item(self, item:Produto):
         pass
         # Implemente este método
+    
+    def __str__(self):
+        return f'{self.__itens}'
