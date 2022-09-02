@@ -33,11 +33,9 @@ class Produto:
         return f'{self.__id} | {self.__nome}'
     
     def busca_nome(string):
-        lista = []
         for produto in Produto.lista_produtos:
             if string.upper() in produto.__nome.upper():
-                lista.append(produto)
-        return lista
+                return produto.__nome
     
     @property
     def nome(self):
