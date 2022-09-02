@@ -6,5 +6,11 @@ from requests.exceptions import ConnectionError
 import requests
 import json
 
+def test_criacao_pessoa_fisica():
+    pass
 
-#rodar seguinte código: pytest -v -m main2
+def test_adicionar_endereco():
+    pass
+
+def test_listar_endereco():
+    pass

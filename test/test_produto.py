@@ -7,14 +7,18 @@ import json
 
 from classes.Produto import Produto
 
-
+@pytest.mark.main3
+@pytest.mark.main2
+@pytest.mark.teste_produto
 @pytest.mark.teste_com_internet
 def test_criacao_produto():
     id = 64
     nome = 'banana'
     produto1 = Produto(id,nome)
     assert produto1.get_name() == 'banana'
-    
+
+@pytest.mark.main3
+@pytest.mark.teste_produto   
 @pytest.mark.teste_com_internet
 def test_produto_busca_nome():
     produto2 = Produto(25,'farinha')
