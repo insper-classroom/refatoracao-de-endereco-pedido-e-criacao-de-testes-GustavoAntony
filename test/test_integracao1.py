@@ -7,4 +7,5 @@ import requests
 import json
 
 
-#rodar seguinte código: pytest -v -m main2
+#utilizar seguinte código: pytest -v -m main2
+#teste de integração pelo pedido completo: pytest -v -m teste_integracao_pedido
