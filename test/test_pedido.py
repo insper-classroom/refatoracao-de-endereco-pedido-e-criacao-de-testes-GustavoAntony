@@ -10,6 +10,9 @@ from classes.Carrinho import Carrinho
 from classes.Pagamentos import Pagamento
 from classes.Pedido import Pedido
 
+#adicionar um teste master de integração por meio do pedido
+
+
 @pytest.mark.teste_com_internet
 @pytest.mark.main2
 @pytest.mark.main3
