@@ -15,8 +15,8 @@ from classes.Pedido import Pedido
 @pytest.mark.teste_com_internet
 @pytest.mark.main2
 @pytest.mark.main3
-@pytest.mark.teste_pagamento
-def a():
+@pytest.mark.teste_pedido
+def test_a():
     pass
 
 
