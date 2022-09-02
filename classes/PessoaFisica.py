@@ -47,6 +47,9 @@ class PessoaFisica:
         endereco = self.__enderecos[apelido_endereco]
         rua = self.__showendereco
         return rua
+    
+    def get_name(self):
+        return self.nome
 
     def listar_enderecos(self):
         return self.__showendereco

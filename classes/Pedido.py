@@ -18,9 +18,11 @@ class Pedido:
     EM_ABERTO = 1
     PAGO = 2
 
-    def __init__(self, conta_pessoa, carrinho):
+    def __init__(self, conta_pessoa, carrinho, pagamento):
         self.pessoa = conta_pessoa
         self.carrinho = carrinho
         self.endereco_entrega = ''
         self.endereco_faturamento =''
+        self.pagamento = 1
+        
     

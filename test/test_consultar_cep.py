@@ -6,7 +6,7 @@ from requests.exceptions import ConnectionError
 import requests
 import json
 
-
+@pytest.mark.teste_cep
 @pytest.mark.teste_com_internet
 @pytest.mark.teste_verificacao
 def test_criacao_endereco_sem_cep():
@@ -16,6 +16,7 @@ def test_criacao_endereco_sem_cep():
         end = Endereco(num)
     assert 'missing 1 required positional argument' in str(excinfo.value)
 
+@pytest.mark.teste_cep
 @pytest.mark.teste_com_internet
 @pytest.mark.teste_verificacao
 def test_criacao_endereco_sem_numero():
@@ -25,7 +26,7 @@ def test_criacao_endereco_sem_numero():
         end = Endereco(cep)
     assert 'missing 1 required positional argument' in str(excinfo.value)
 
-
+@pytest.mark.teste_cep
 @pytest.mark.teste_robustez
 @pytest.mark.teste_com_internet
 def test_cep_como_int():
@@ -33,6 +34,7 @@ def test_cep_como_int():
     end = Endereco.consultar_cep(cep)
     assert end['logradouro'] == 'Rua Elvira Ferraz'
 
+@pytest.mark.teste_cep
 @pytest.mark.teste_robustez
 @pytest.mark.teste_com_internet
 def test_cep_como_string():
@@ -40,6 +42,7 @@ def test_cep_como_string():
     end = Endereco.consultar_cep(cep)
     assert end['logradouro'] == 'Rua José Bonifácio de Oliveira'
 
+@pytest.mark.teste_cep
 @pytest.mark.teste_robustez
 @pytest.mark.teste_com_internet
 def test_erro_na_quantidade_digitos_cep():
@@ -47,6 +50,7 @@ def test_erro_na_quantidade_digitos_cep():
     end = Endereco.consultar_cep(cep)
     assert False == end
 
+@pytest.mark.teste_cep
 @pytest.mark.teste_robustez
 @pytest.mark.teste_com_internet
 def test_cep_nao_existe():
@@ -54,6 +58,7 @@ def test_cep_nao_existe():
     end = Endereco.consultar_cep(cep)
     assert False == end
 
+@pytest.mark.teste_cep
 @pytest.mark.teste_robustez
 @pytest.mark.teste_sem_internet
 def test_sem_internet():
