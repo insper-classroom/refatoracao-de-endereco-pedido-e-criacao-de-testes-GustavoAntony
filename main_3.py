@@ -14,6 +14,7 @@ from classes.Carrinho import Carrinho
 
 import copy
 
+
 # Caso de uso em que se busca uma pessoa e um produto
 # Cria uma pessoa 
 pessoa1 = PessoaFisica('Carlos', 'tiago@email.com', '524.222.452-6')
@@ -56,14 +57,16 @@ if len(produtos) > 0:
 
 
 carrinho = Carrinho()
-carrinho.adicionar_item(sabonete)
+carrinho.adicionar_item(sabonete,4)
 
-pedido = Pedido()
 
-ends = pessoa.listar_enderecos()
 
-if len(ends > 0):
-    endereco = ends[0]
+ends = pessoa1.listar_enderecos()
+
+if len(ends)>0:
+    endereco = ends['casa']
+
+pedido = Pedido(pessoa1,carrinho,end1)
 
 # Lembre-se de adicionar estes atributos ao endereço
 pedido.endereco_entrega = copy.deepcopy(endereco) 
@@ -73,7 +76,8 @@ pedido.endereco_faturamento = copy.deepcopy(endereco)
 pag = Pagamento(pedido)
 pag.processa_pagamento()
 if pag.pagamento_aprovado:
-    pedido.status = Pedido.PAGO 
+    pedido.pagamento = Pedido.PAGO 
+print(pedido.pagamento)
 
 print("Pedido aguardando coleta")
 

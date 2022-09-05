@@ -12,17 +12,19 @@ from classes.Carrinho import Carrinho
 import re
 
 
-
-
 class Pedido:
     EM_ABERTO = 1
     PAGO = 2
 
-    def __init__(self, conta_pessoa:PessoaFisica, carrinho:Carrinho):
+    def __init__(self, conta_pessoa:PessoaFisica, carrinho:Carrinho, endereco:Endereco):
         self.pessoa = conta_pessoa
         self.carrinho = carrinho
-        self.endereco_entrega = ''
+        self.itens = carrinho.get_itens()
+        self.endereco_entrega = f'{endereco.rua}, número {endereco.numero}'
         self.endereco_faturamento =''
-        self.pagamento = 1
+        self.pagamento = 'em aberto'
+        
+    def get_pedido(self):
+        return f'{self.pessoa.nome} | {self.endereco_entrega} | {self.itens} | Status: Pedido {self.pagamento}'
         
     

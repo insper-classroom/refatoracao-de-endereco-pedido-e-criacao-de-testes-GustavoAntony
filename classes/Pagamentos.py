@@ -1,16 +1,18 @@
+from classes.Pedido import Pedido
+
+
 class Pagamento:
-    def __init__(self,pedido):
+    def __init__(self,pedido:Pedido):
         self.pedido = pedido
-        self.__status = 'aberto' 
+        self.pagamento = pedido.pagamento 
     def get_status(self):
-        return self.__status
+        return self.pagamento
 
     def processa_pagamento(self):
-        print('Processando pagamento')
-        self.__status = 'pago'
+        self.pagamento = 'pago'
     # Função dummy que sempre dá o pagamento como aprovado
     def pagamento_aprovado(self):
-        if self.__status == 'pago':
+        if self.pagamento == 'pago':
             return True
 
     
