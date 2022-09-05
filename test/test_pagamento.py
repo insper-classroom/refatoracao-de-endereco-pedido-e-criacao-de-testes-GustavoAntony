@@ -17,9 +17,10 @@ from classes.Pedido import Pedido
 def test_criacao_pagamento():
     pessoa = PessoaFisica('Carlos', 'tiago@email.com', '524.222.452-6')
     carrinho = Carrinho()
-    pedido = Pedido(pessoa,carrinho)
+    end = Endereco('12232239',205)
+    pedido = Pedido(pessoa,carrinho,end)
     pag = Pagamento(pedido)
-    assert pag.get_status() == 'aberto'
+    assert pag.get_status() == 'em aberto'
 
 
 
@@ -30,7 +31,8 @@ def test_criacao_pagamento():
 def test_processa_pagamento():
     pessoa = PessoaFisica('Carlos', 'tiago@email.com', '524.222.452-6')
     carrinho = Carrinho()
-    pedido = Pedido(pessoa,carrinho)
+    end = Endereco('12232239',205)
+    pedido = Pedido(pessoa,carrinho,end)
     pag = Pagamento(pedido)
     pag.processa_pagamento()
     assert pag.get_status() == 'pago'
@@ -43,8 +45,9 @@ def test_processa_pagamento():
 @pytest.mark.teste_pagamento
 def test_pagamento_aprovado():
     pessoa = PessoaFisica('Carlos', 'tiago@email.com', '524.222.452-6')
+    end = Endereco('12232239',205)
     carrinho = Carrinho()
-    pedido = Pedido(pessoa,carrinho)
+    pedido = Pedido(pessoa,carrinho,end)
     pag = Pagamento(pedido)
     pag.processa_pagamento()
     bol = pag.pagamento_aprovado()
